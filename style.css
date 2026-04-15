@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;600;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: #050505;
+    color: white;
+    overflow: hidden; /* Запрет прокрутки */
+    font-family: 'Montserrat', sans-serif;
+    touch-action: none;
+}
+
+#main-container {
+    position: fixed; /* Fixed надежнее абсолюта на телефонах */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ==========================================
+   ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ
+   ========================================== */
+.abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Смещение на -50% сделает GSAP в скрипте */
+}
+
+/* --- ФОНЫ И ДЕКОР --- */
+.noise {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.2;
+    animation: noiseAnim 0.2s infinite linear;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes noiseAnim {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-5px, 5px);
+    }
+}
+
+.grid-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+}
+
+.vignette {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0) 30%, rgba(0,0,0,1) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-container {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0.08;
+    transform: rotate(-5deg) scale(1.2);
+    z-index: 1;
+}
+
+.marquee {
+    display: inline-block;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 900;
+    animation: marqueeAnim 10s linear infinite;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+}
+
+@keyframes marqueeAnim {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.decor {
+    position: absolute;
+    opacity: 0;
+    color: #666;
+    font-weight: 300;
+    letter-spacing: 2px;
+    z-index: 8;
+}
+
+.page-num {
+    top: 20px;
+    left: 20px;
+    font-size: 10px;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+}
+
+.barcode {
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    letter-spacing: 4px;
+    font-weight: 900;
+}
+
+/* --- ФОТО И ЖУРНАЛЬНЫЙ ТЕКСТ --- */
+.photo {
+    width: 90vw;
+    height: 70vh;
+    object-fit: contain; /* Сохраняет пропорции без обрезки */
+    opacity: 0;
+    filter: drop-shadow(0px 20px 40px rgba(0,0,0,0.9));
+    z-index: 5;
+}
+
+.bg-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 22vw, 18rem);
+    color: #dedede;
+    z-index: 4;
+    font-weight: 900;
+    opacity: 0;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1;
+}
+
+.fg-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(3rem, 16vw, 12rem);
+    z-index: 6;
+    font-weight: 900;
+    opacity: 0;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+}
+
+.rgb-split {
+    text-shadow: -3px 0 red, 3px 0 cyan;
+}
+
+/* Glitch */
+.glitch-text {
+    position: relative;
+}
+
+    .glitch-text::before, .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+    }
+
+    .glitch-text::before {
+        color: #0ff;
+        z-index: -1;
+        animation: glitchAnim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    }
+
+    .glitch-text::after {
+        color: #f0f;
+        z-index: -2;
+        animation: glitchAnim 0.3s cubic-bezier(.25, .46, .45, .94) reverse both infinite;
+    }
+
+@keyframes glitchAnim {
+    0% {
+        transform: translate(0)
+    }
+
+    20% {
+        transform: translate(-2px, 2px)
+    }
+
+    40% {
+        transform: translate(-2px, -2px)
+    }
+
+    60% {
+        transform: translate(2px, 2px)
+    }
+
+    80% {
+        transform: translate(2px, -2px)
+    }
+
+    100% {
+        transform: translate(0)
+    }
+}
+
+/* --- ФИНАЛЬНОЕ ПОЗДРАВЛЕНИЕ --- */
+.final-message {
+    width: 90vw;
+    max-width: 600px; /* Чтобы на ПК не растягивалось на весь экран */
+    text-align: center;
+    z-index: 20;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.6); /* Легкая подложка для читаемости */
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px); /* Красивое размытие фона за текстом */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.final-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    color: #ff0040;
+    margin-bottom: 10px;
+    text-shadow: 0px 0px 20px rgba(255, 0, 64, 0.5);
+}
+
+.final-highlight {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    font-weight: 900;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.final-text {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* Вспышки */
+.flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#flash-white {
+    background: white;
+}
+
+.red-flash {
+    background: red;
+    mix-blend-mode: color-burn;
+}
+
+.black-flash {
+    background: black;
+}
+
+/* Стартовый экран */
+#start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+    cursor: pointer;
+    z-index: 1000;
+    position: relative;
+}
+
+    #start-screen h1 {
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        letter-spacing: 3px;
+    }

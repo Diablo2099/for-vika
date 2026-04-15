@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Для Вики ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Стартовый экран -->
+    <div id="start-screen">
+        <h1 class="glitch-text" data-text="[ НАЖАТЬ ]">[ НАЖАТЬ ]</h1>
+    </div>
+
+    <!-- Основной контейнер -->
+    <div id="main-container" style="display: none;">
+        <audio id="bg-music" src="music.mp3"></audio>
+
+        <!-- 1. Фоновые эффекты (всегда на фоне) -->
+        <div class="noise"></div>
+        <div class="grid-bg"></div>
+        <div class="vignette"></div>
+        <div class="marquee-container">
+            <div class="marquee">
+                <span>VICTORIA FASHION STYLE VICTORIA FASHION STYLE VICTORIA FASHION STYLE</span>
+            </div>
+        </div>
+
+        <!-- 2. Огромный текст ЗА фотографиями -->
+        <div class="abs-center bg-text rgb-split" id="bg-txt-1">VOGUE</div>
+        <div class="abs-center bg-text" id="bg-txt-2">ICON</div>
+        <div class="abs-center bg-text glitch-text" id="bg-txt-3" data-text="BEAUTY">BEAUTY</div>
+
+        <!-- 3. Фотографии Вики -->
+        <img src="vika1.png" class="abs-center photo" id="photo-1" alt="Vika">
+        <img src="vika2.png" class="abs-center photo" id="photo-2" alt="Vika">
+        <img src="vika3.jpg" class="abs-center photo" id="photo-3" alt="Vika">
+        <img src="vika4.jpg" class="abs-center photo" id="photo-4" alt="Vika">
+        <img src="vika5.jpg" class="abs-center photo" id="photo-5" alt="Vika">
+
+        <!-- 4. Текст ПЕРЕД фотографиями -->
+        <div class="abs-center fg-text outline-text" id="fg-txt-1">STYLE</div>
+        <div class="abs-center fg-text" id="fg-txt-2">PERFECT</div>
+        <div class="abs-center fg-text rgb-split" id="fg-txt-3">CHIC</div>
+
+        <!-- 5. ФИНАЛЬНОЕ ПОЗДРАВЛЕНИЕ -->
+        <div class="abs-center final-message" id="final-screen">
+            <h2 class="final-name">VICTORIA</h2>
+            <h3 class="final-highlight">ТЫ ЛУЧШАЯ</h3>
+            <p class="final-text">Поздравляю с завершением практики!<br>Осталось совсем чуть-чуть ❤️</p>
+        </div>
+
+        <!-- 6. Декорации журнала -->
+        <div class="decor page-num">PAGE 01 // AESTHETIC</div>
+        <div class="decor barcode">||| |||| | || | |||| ||</div>
+
+        <!-- 7. Вспышки (перекрывают всё) -->
+        <div id="flash-white" class="flash"></div>
+        <div id="flash-red" class="flash red-flash"></div>
+        <div id="flash-black" class="flash black-flash"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
